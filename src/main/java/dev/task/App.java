@@ -1,12 +1,14 @@
 package dev.task;
 
 import java.util.Scanner;
-import dev.task.controllers.OpController;
+import java.util.UUID;
+
+import dev.task.controllers.TaskController;
 
 public class App {
     public static void main(String[] args) {
         System.out.println("Welcome to Task Tracker CLI");
-        OpController op = new OpController();
+        TaskController op = new TaskController();
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
@@ -34,38 +36,55 @@ public class App {
 
                 switch (action.toLowerCase()) {
                     case "add":
-                        if (taskName.isEmpty()) {
-                            System.out.println("Oops! Empty Task!");
-                        } else {
                             op.addTask(taskName);
                             System.out.println("Adding task: " + taskName);
-                        }
                         break;
 
                     case "update":
-                        System.out.println("Update task: " + taskName);
+                            String[] updateParts = taskName.split("\\s+", 2);                          
+                            if (updateParts.length < 2) {
+                                System.out.println("You must provide both ID and new description!");
+                            } else {
+                                String idStr = updateParts[0];      
+                                String newDesc = updateParts[1];    
+                                op.updateTask(UUID.fromString(idStr), newDesc);
+                            }
                         break;
 
                     case "delete":
-                        System.out.println("Delete task: " + taskName);
+                        op.deleteTask(UUID.fromString(taskName));
+                        break;
+                    
+                    case "mark-in-progress":
+                        if(taskName.isEmpty()) {
+                            System.out.println("Please provide a task to mark as done");
+                            break;
+                        }
+                        System.out.println("Marking in progress");
+                        op.markInProgress(UUID.fromString(taskName));
                         break;
 
+                    case "mark-done":
+                        if(taskName.isEmpty()) {
+                            System.out.println("Please provide a task to mark as done");
+                            break;
+                        }
+                        op.markDone(UUID.fromString(taskName));
+                        break;
+                            
                     case "list":
                         switch (taskName.toLowerCase()) {
                             case "":
-                                System.out.println("Listing all tasks...");
+                                op.listAll();
                                 break;
                             case "done":
-                                System.out.println("Listing done tasks...");
-                                // op.listDoneTasks();
+                                op.listDone();
                                 break;
                             case "todo":
-                                System.out.println("Listing todo tasks...");
-                                // op.listTodoTasks();
+                                op.listTodo();
                                 break;
                             case "in-progress":
-                                System.out.println("Listing in-progress tasks...");
-                                // op.listInProgressTasks();
+                                op.listInProgress();
                                 break;
                             default:
                                 System.out.println("Unknown list filter: " + taskName);
@@ -75,7 +94,6 @@ public class App {
                     default:
                         System.out.println("Unknown action: " + action);
                 }
-                op.saveTasks();
             }
         } catch (Exception e) {
             System.out.println(e);

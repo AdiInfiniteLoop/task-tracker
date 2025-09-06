@@ -17,8 +17,6 @@ public class TaskController {
             System.out.println("Oops! Empty Task!");
             return;
         }
-        var task = service.addTask(desc);
-        System.out.println("Task added: " + task);
     }
 
     public void update(UUID id, String desc) {
@@ -28,9 +26,8 @@ public class TaskController {
     }
 
     public void delete(UUID id) {
-        boolean success = service.deleteTask(id);
-        if (success) System.out.println("Task deleted.");
-        else System.out.println("Task not found.");
+        service.deleteTask(id);
+        System.out.println("Task deleted");
     }
 
     public void markInProgress(UUID id) {

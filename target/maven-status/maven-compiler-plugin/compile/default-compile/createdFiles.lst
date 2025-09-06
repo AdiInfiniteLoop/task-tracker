@@ -4,5 +4,5 @@ dev/task/services/TaskService.class
 dev/task/repo/TaskRepository.class
 dev/task/App.class
 dev/task/models/Task.class
-dev/task/repo/JsonTaskRepository.class
+dev/task/repo/MongoTaskRepository.class
 dev/task/cli/CLI.class

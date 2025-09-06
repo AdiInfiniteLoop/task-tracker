@@ -10,11 +10,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import dev.task.models.Task;
 
-public class JsonTaskRepo implements TaskRepo {
-      private final File file = new File("tasks.json");
+public class JsonTaskRepository implements TaskRepository {
+    private final File file = new File("tasks.json");
     private final ObjectMapper mapper;
 
-    public JsonTaskRepo() {
+    public JsonTaskRepository() {
         mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
@@ -27,7 +27,7 @@ public class JsonTaskRepo implements TaskRepo {
                 return new ArrayList<>(List.of(arr));
             }
         } catch (IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Error loading tasks: " + e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -37,7 +37,7 @@ public class JsonTaskRepo implements TaskRepo {
         try {
             mapper.writeValue(file, tasks);
         } catch (IOException e) {
-            System.out.println("Error writing file: " + e.getMessage());
+            System.out.println("Error saving tasks: " + e.getMessage());
         }
     }
 }

@@ -1,5 +1,8 @@
+/home/adi/Projects/cli-task-manager/src/main/java/dev/task/controllers/TaskController.java
 /home/adi/Projects/cli-task-manager/src/main/java/dev/task/models/Status.java
-/home/adi/Projects/cli-task-manager/src/main/java/dev/task/controllers/OpController.java
-/home/adi/Projects/cli-task-manager/src/main/java/dev/task/service/OpInterface.java
+/home/adi/Projects/cli-task-manager/src/main/java/dev/task/repo/JsonTaskRepository.java
+/home/adi/Projects/cli-task-manager/src/main/java/dev/task/services/TaskService.java
 /home/adi/Projects/cli-task-manager/src/main/java/dev/task/models/Task.java
 /home/adi/Projects/cli-task-manager/src/main/java/dev/task/App.java
+/home/adi/Projects/cli-task-manager/src/main/java/dev/task/repo/TaskRepository.java
+/home/adi/Projects/cli-task-manager/src/main/java/dev/task/cli/CLI.java

@@ -1,5 +1,8 @@
-dev/task/models/Task.class
 dev/task/models/Status.class
-dev/task/controllers/OpController.class
-dev/task/service/OpInterface.class
+dev/task/controllers/TaskController.class
+dev/task/services/TaskService.class
+dev/task/repo/TaskRepository.class
 dev/task/App.class
+dev/task/models/Task.class
+dev/task/repo/JsonTaskRepository.class
+dev/task/cli/CLI.class
